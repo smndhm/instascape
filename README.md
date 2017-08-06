@@ -1,5 +1,5 @@
-# instascape
-Get your Landscape ready for Instagram
+# Panograma
+Get your panorama ready for Instagram
 
 ## Instructions
 
@@ -16,6 +16,6 @@ Get your Landscape ready for Instagram
 
 #### References
 
-https://www.html5rocks.com/en/tutorials/file/dndfiles/#toc-selecting-files-dnd
+https://www.html5rocks.com/en/tutorials/file/dndfiles/
 https://github.com/simonsarris/Canvas-tutorials/blob/master/shapes.js
 https://developer.mozilla.org/fr/docs/Web/HTML/Canvas
