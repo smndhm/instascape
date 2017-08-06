@@ -50,6 +50,8 @@ var $d = document,
 	canvas = $b.querySelector('#canvas-ig canvas'),
 	ctx = canvas.getContext('2d'),
 	sClassDrag = 'dropzone',
+	sClassDrop = 'loading',
+	sClassCanvas = 'canvas',
 	grid, img;
 
 //Events
@@ -76,11 +78,15 @@ var drop = function ( e ) {
 
 	$b.classList.remove( sClassDrag );
 
+	$b.classList.add( sClassDrop );
+
 	var files = e.dataTransfer.files;
 
 	for ( var i = 0, f; f = files[i]; i++ ) {
 
 		if ( !f.type.match('image.*') ) {
+
+			$b.classList.remove( sClassDrop );
 			
 			//TODO: Notify file format
 			console.log( 'error', 'f.type', f.type );
@@ -114,6 +120,10 @@ var drop = function ( e ) {
 					//Create Grid Object
 					grid = new Grid( rctX, rctY, rctW, rctH, sqrSize, rctLineWidth );
 					
+					$b.classList.remove( sClassDrop );
+
+					$b.classList.add( sClassCanvas );
+
 					drawCanvas();
 
 					setInterval( function () {

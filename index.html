@@ -3,10 +3,20 @@
 	<head>
 		<meta charset=utf-8>
 		<title>Panograma</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<div id="canvas-ig">
+		<div id="instructions">
+			<span>
+				Drag & drop your panorama here<br>
+				<div class="filechooser">
+					or <a href="#"><input type="file">select one</a>
+				</div>
+			</span>
+			<div class="spinner"></div>
+		</div>
+		 <div id="canvas-ig">
 			<canvas></canvas>
 		</div>
 		<script src="main.js"></script>
