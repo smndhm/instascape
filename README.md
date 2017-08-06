@@ -1,7 +1,7 @@
 # instascape
 Get your Landscape ready for Instagram
 
-##Instructions
+## Instructions
 
 - Drop file in browser
 - Drop shape on desired landscape
@@ -9,7 +9,7 @@ Get your Landscape ready for Instagram
 
 Only tested on Chrome Mac for now.
 
-###Links
+### Links
 
 https://www.html5rocks.com/en/tutorials/file/dndfiles/#toc-selecting-files-dnd
 https://github.com/simonsarris/Canvas-tutorials/blob/master/shapes.js
