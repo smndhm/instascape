@@ -4,8 +4,8 @@ Get your panorama ready for Instagram
 ## Instructions
 
 - Drop file in browser
-- Drop shape on desired landscape
-- Double click on each square to get your image
+- Drag the grid on desired panorama
+- Double click on each square to get your images
 
 ### TODO
 
