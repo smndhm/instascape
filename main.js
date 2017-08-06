@@ -1,12 +1,11 @@
 //Grid Object
-var Grid = function ( x, y, w, h, s, l ) {
+var Grid = function ( x, y, w, h, s ) {
 
 	this.x = x || 0;
 	this.y = y || 0;
 	this.w = w || 0;
 	this.h = h || 0;
 	this.s = s || 0;
-	this.l = l || 1;
 
 	this.update = false;
 
@@ -14,7 +13,9 @@ var Grid = function ( x, y, w, h, s, l ) {
 
 Grid.prototype.draw = function( ctx ) {
 
-	ctx.lineWidth = this.l;
+	var rect = canvas.getBoundingClientRect();
+
+	ctx.lineWidth = this.w > this.h ? canvas.width / rect.width : canvas.height / rect.height;
 
 	//Vertical lines
 	for ( var x = ( this.x + this.s ); x < this.w; x+=this.s ) {
@@ -49,8 +50,8 @@ var $d = document,
 	$b = $d.body,
 	canvas = $b.querySelector('#canvas-ig canvas'),
 	ctx = canvas.getContext('2d'),
-	sClassDrag = 'dropzone',
-	sClassDrop = 'loading',
+	sClassFileOver = 'dropzone',
+	sClassLoading = 'loading',
 	sClassCanvas = 'canvas',
 	grid, img;
 
@@ -60,14 +61,14 @@ var dragOver = function ( e ) {
 
 	e.preventDefault();
 
-	$b.classList.add( sClassDrag );
+	$b.classList.add( sClassFileOver );
 
 };
 
 //when we drag outside the page
 var dragLeave = function ( e ) {
 
-	$b.classList.remove( sClassDrag );
+	$b.classList.remove( sClassFileOver );
 
 };
 
@@ -76,17 +77,31 @@ var drop = function ( e ) {
 
 	e.preventDefault();
 
-	$b.classList.remove( sClassDrag );
+	fileImport( e.dataTransfer.files );
 
-	$b.classList.add( sClassDrop );
+}
 
-	var files = e.dataTransfer.files;
+//File Select
+var fileSelect = function ( e ) {
+
+	$b.classList.add( sClassFileOver );
+
+	fileImport( e.target.files );
+
+};
+
+//file import
+var fileImport = function ( files ) {
+
+	$b.classList.add( sClassLoading );
 
 	for ( var i = 0, f; f = files[i]; i++ ) {
 
 		if ( !f.type.match('image.*') ) {
 
-			$b.classList.remove( sClassDrop );
+			$b.classList.remove( sClassFileOver );
+
+			$b.classList.remove( sClassLoading );
 			
 			//TODO: Notify file format
 			console.log( 'error', 'f.type', f.type );
@@ -106,22 +121,19 @@ var drop = function ( e ) {
 					canvas.width = img.width;
 					canvas.height = img.height;
 
-					var rect = canvas.getBoundingClientRect();
-
 					//Get grid data
 					var isWidthBigger = canvas.width > canvas.height,
 						sqrSize = Math.min( canvas.width, canvas.height ),
 						rctW = isWidthBigger ? ( Math.floor( canvas.width / sqrSize ) * sqrSize ) : canvas.width ,
 						rctH = isWidthBigger ? canvas.height : ( Math.floor( canvas.height / sqrSize ) * sqrSize ),
 						rctX = Math.floor( ( canvas.width - rctW ) / 2 ),
-						rctY = Math.floor( ( canvas.height - rctH ) / 2 ),
-						rctLineWidth = isWidthBigger ? canvas.width / rect.width : canvas.height / rect.height ;
+						rctY = Math.floor( ( canvas.height - rctH ) / 2 );
 					
 					//Create Grid Object
-					grid = new Grid( rctX, rctY, rctW, rctH, sqrSize, rctLineWidth );
+					grid = new Grid( rctX, rctY, rctW, rctH, sqrSize );
 					
-					$b.classList.remove( sClassDrop );
-
+					$b.classList.remove( sClassFileOver );
+					$b.classList.remove( sClassLoading );
 					$b.classList.add( sClassCanvas );
 
 					drawCanvas();
@@ -253,8 +265,10 @@ var drawCanvas = function () {
 
 	//Draw Image
 	ctx.drawImage( img, 0, 0 );
+	
 	//Draw Grid
 	grid.draw(ctx);
+	
 	//Draw Blur
 	ctx.globalAlpha = 0.5;
 	if ( canvas.width > canvas.height ) {
@@ -277,3 +291,5 @@ canvas.addEventListener( 'dblclick', canvasDblClick, true );
 $b.addEventListener( 'dragover', dragOver, false );
 $b.addEventListener( 'dragleave', dragLeave, false );
 $b.addEventListener( 'drop', drop, false );
+
+$b.querySelector('.filechooser input').addEventListener('change', fileSelect, false);
