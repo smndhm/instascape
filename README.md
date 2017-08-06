@@ -13,6 +13,6 @@ Get your panorama ready for Instagram
 
 #### References
 
-https://www.html5rocks.com/en/tutorials/file/dndfiles/
-https://github.com/simonsarris/Canvas-tutorials/blob/master/shapes.js
-https://developer.mozilla.org/fr/docs/Web/HTML/Canvas
+- https://www.html5rocks.com/en/tutorials/file/dndfiles/
+- https://github.com/simonsarris/Canvas-tutorials/blob/master/shapes.js
+- https://developer.mozilla.org/fr/docs/Web/HTML/Canvas
