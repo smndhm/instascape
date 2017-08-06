@@ -7,12 +7,9 @@ Get your panorama ready for Instagram
 - Drop shape on desired landscape
 - Double click on each square to get your image
 
-*Only tested on Chrome Mac for now.*
-
 ### TODO
 
-- Pimp
-- Make it mobile compatible
+- Make it work well on mobile
 
 #### References
 
