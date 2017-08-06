@@ -283,10 +283,34 @@ var drawCanvas = function () {
 
 };
 
+var timeout;
+var lastTap = 0;
+
+var doubleTouch = function ( e ) {
+
+    var currentTime = new Date().getTime();
+    var tapLength = currentTime - lastTap;
+    clearTimeout(timeout);
+    if (tapLength < 500 && tapLength > 0) {
+        event.preventDefault();
+        canvasDblClick( e );
+    } else {
+        timeout = setTimeout(function() {
+            clearTimeout(timeout);
+        }, 500);
+    }
+    lastTap = currentTime;
+
+};
+
 canvas.addEventListener( 'mousedown', canvasMouseDown, true );
 canvas.addEventListener( 'mousemove', canvasMouseMove, true );
 canvas.addEventListener( 'mouseup', canvasMouseUp, true );
 canvas.addEventListener( 'dblclick', canvasDblClick, true );
+
+canvas.addEventListener( 'touchstart', function ( e ) { canvasMouseDown( e.touches[0] ); }, true );
+canvas.addEventListener( 'touchmove', function ( e ) { canvasMouseMove( e.touches[0] ); }, true );
+canvas.addEventListener( 'touchend', function ( e ) { canvasMouseUp( e.changedTouches[0] ); doubleTouch( e.changedTouches[0] ); }, true );
 
 $b.addEventListener( 'dragover', dragOver, false );
 $b.addEventListener( 'dragleave', dragLeave, false );
