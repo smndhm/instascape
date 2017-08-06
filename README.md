@@ -7,9 +7,15 @@ Get your Landscape ready for Instagram
 - Drop shape on desired landscape
 - Double click on each square to get your image
 
-Only tested on Chrome Mac for now.
+*Only tested on Chrome Mac for now.*
 
-### Links
+### TODO
+
+- Pimp
+- Make it mobile compatible
+
+#### References
 
 https://www.html5rocks.com/en/tutorials/file/dndfiles/#toc-selecting-files-dnd
 https://github.com/simonsarris/Canvas-tutorials/blob/master/shapes.js
+https://developer.mozilla.org/fr/docs/Web/HTML/Canvas
