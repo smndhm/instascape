@@ -1,6 +1,8 @@
 # Panograma
 Get your panorama ready for Instagram
 
+Try it: https://smndhm.github.io/panograma/
+
 ## Instructions
 
 - Drop file in browser
