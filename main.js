@@ -235,7 +235,8 @@ var canvasDblClick = function ( e ) {
 					canvasImage.height = grid.s;
 					ctxImage.drawImage( img, x, y, grid.s, grid.s, 0, 0, grid.s, grid.s );
 
-					window.open( canvasImage.toDataURL('image/jpeg', 0.8) );
+					var newWindow = window.open();
+					newWindow.document.write('<img src="' + canvasImage.toDataURL('image/jpeg', 0.8) + '" />');
 
 				}
 
